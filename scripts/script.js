@@ -1,84 +1,114 @@
 // PAPER-SCISSORS-ROCK GAME 
 // STARTING GAME
-    // COMPUTER CHOSING HIS TYPE
-        // WHEN STARTING GAME, COMPUTER MUST SET VARIABLE CONTAINING HIS CHOICE FROM ONE OF THREE POSSIBLE OUTPUTS
-        // POSSIBLE OUTPUTS ARE SCISSORS-PAPER-ROCK. CHOICE IS A FUNCTION WITH RANDOM AND EQUAL POSSIBILITY SELECTION. 
         
-
         function computerPlay() {
-            // COMPUTER MUST CHOSE RUNDOM NUMBER IN THE RANGE FROM 1 TO 100.
-        let num = Math.floor((Math.random()*100) +1);
-        // RANGE IS DIVDED INTO THREE SUBRANGES 
-        // EACH SUBRANGE HAS ITS STRING VALUE 
-         if (num >= 1 && num <= 33) {
-           return 'paper';
-            ;
-         } else if (num > 33 && num <= 66) {
-           return 'rock';
-            ;
-         } else if (num > 66 && num < 100) {
-           return'scissors';
-            ;
-         } else computerPlay()
+            let num = Math.floor((Math.random()*100) +1); //computer choses random number in range 1-100
+                if (num >= 1 && num <= 33) {   //range is divide into three areas, each area has specific value
+                   return 'paper';
+                 } else if (num > 33 && num <= 66) {
+                   return 'rock';
+                 } else if (num > 66 && num < 100) {
+                   return'scissors';
+                 } else computerPlay() // 
         }        
-    
-        
-// PLAYING GAME
-    // COMPARING BOTH CHOISES
-         // COMPUTER TAKES BOTH playerSelection AND compValue AND CHEKS CONDITION FOR WINNIG. 
-         // BASING ON COMPARISON RULES, COMPUTER IS CHOSING THE WINNER OF ROUND AND RETURN POINT TO WINNER
-
-        function round(){
-        let compValue = computerPlay();
-        let playerSelection = prompt('Type your pick !');
-        playerSelection = playerSelection.toLowerCase();
-        roundAlgorithm(playerSelection, compValue);
+            
+        function round(input){  //function initializing round.
+            let compValue = computerPlay();
+            let playerSelection = input;
+                playerSelection = playerSelection.toLowerCase();
+                    roundAlgorithm(playerSelection, compValue);
         }
 
-        // BRAIN OF DECISION-MAKING
-
-        function roundAlgorithm(playerSelection, compValue) {
-        if (playerSelection == 'paper' && compValue == 'rock') {
-            alert('Paper beats Rock - Player Wins !');
-            playerWins += 1;
-        } else if (playerSelection == 'paper' && compValue == 'scissors'){
-            alert('Paper loses against Scissors - Computer Wins !');
-            compWins += 1;
-        } else if (playerSelection == 'paper' && compValue == 'paper'){
-            alert('Paper and Paper - It\'s a draw');
-        } else if (playerSelection == 'rock' && compValue == 'paper'){
-            alert('Rock loses against Paper - Computer wins !');
-            compWins += 1;
-        } else if (playerSelection == 'rock' && compValue == 'scissors'){
-            alert('Rock beats Scissors - Player Wins !');
-            playerWins += 1;
-        } else if (playerSelection == 'rock' && compValue == 'rock') {
-            alert('Rock and Rock = It\'s a draw !');
-        } else if (playerSelection == 'scissors' && compValue == 'rock'){
-            alert('Scissors loses against Rock - Computer Wins !');
-            compWins += 1;
-        } else if (playerSelection == 'scissors' && compValue == 'paper'){
-            alert('Scissors beats Paper - Player Wins !');
-            playerWins += 1;
-        } else if (playerSelection == 'scissors' && compValue == 'scissors'){
-            alert('draw')
-        } else {
-            alert('BUG!!!!!!!!')
-        }
+        function displayRoundResult(text) { //displaying result of round.
+            const screen = document.querySelector('.info');
+            const messege = document.createElement('p');
+                messege.textContent = text; 
+                screen.appendChild(messege);
         }
 
-        //GAME STRUCTURE  
+        function roundAlgorithm(playerSelection, compValue) { // round decision making algorithm
+            if (playerSelection == 'paper' && compValue == 'rock') {
+                displayRoundResult('Paper beats Rock - Player Wins !');
+                playerWins += 1;
+            } else if (playerSelection == 'paper' && compValue == 'scissors'){
+                displayRoundResult('Paper loses against Scissors - Computer Wins !');
+                compWins += 1;
+            } else if (playerSelection == 'paper' && compValue == 'paper'){
+                displayRoundResult('Paper and Paper - It\'s a draw');
+            } else if (playerSelection == 'rock' && compValue == 'paper'){
+                displayRoundResult('Rock loses against Paper - Computer wins !');
+                compWins += 1;
+            } else if (playerSelection == 'rock' && compValue == 'scissors'){
+                displayRoundResult('Rock beats Scissors - Player Wins !');
+                playerWins += 1;
+            } else if (playerSelection == 'rock' && compValue == 'rock') {
+                displayRoundResult('Rock and Rock = It\'s a draw !');
+            } else if (playerSelection == 'scissors' && compValue == 'rock'){
+                displayRoundResult('Scissors loses against Rock - Computer Wins !');
+                compWins += 1;
+            } else if (playerSelection == 'scissors' && compValue == 'paper'){
+                displayRoundResult('Scissors beats Paper - Player Wins !');
+                playerWins += 1;
+            } else if (playerSelection == 'scissors' && compValue == 'scissors'){
+                displayRoundResult('draw')
+            } else {
+                displayRoundResult('BUG!!!!!!!!')
+            }
+        }
+        // begginign of the game
+        const scoreboard = document.querySelector('.scoreboard')
+        const information = document.createElement('p');
+        const display = document.querySelector('#display');
+            information.textContent = "To start a game, please chose your weapon to fight bad computer virus";
+            scoreboard.insertBefore(information, display);
         
         let playerWins = 0;
         let compWins = 0;
 
-        while (playerWins < 5 && compWins < 5) {
-            round();
-        } 
-        
-        if (playerWins > compWins) {
-            alert(`Player Won ! Result is Player: ${playerWins} - ${compWins} : Computer`)
-        } else {
-            alert(`Computer Won ! Result is Player: ${playerWins} - ${compWins} : Computer`)
-        }
-
+        const player = document.querySelector('#player');
+            player.textContent = playerWins;
+        const computer = document.querySelector('#comp');
+            computer.textContent = compWins;
+        const paper = document.querySelector('#paper');
+        const rock = document.querySelector('#rock');
+        const scissors = document.querySelector('#scissors');
+          
+                  paper.addEventListener('click', function(){
+                    information.textContent = 'Battle is in progress...'  
+                    round('paper')
+                    player.textContent = playerWins;
+                    computer.textContent = compWins;
+                        if (playerWins == 5){
+                            alert('OVER !!!!');
+                            information.textContent = 'It\'s Over Player Won !'
+                        } else if (compWins == 5) {
+                            alert('OVER !!!!');
+                            information.textContent = 'It\'s Over Player Won !'
+                        }
+                  });
+                  rock.addEventListener('click', function(){
+                    information.textContent = 'Battle is in progress...' 
+                      round('rock');
+                      player.textContent = playerWins;
+                      computer.textContent = compWins;
+                      if (playerWins == 5){
+                        alert('OVER !!!!');
+                        information.textContent = 'It\'s Over Player Won !'
+                    } else if (compWins == 5) {
+                        alert('OVER !!!!');
+                        information.textContent = 'It\'s Over Player Won !'
+                    }
+                  });
+                  scissors.addEventListener('click', function(){
+                    information.textContent = 'Battle is in progress...' 
+                      round('scissors');
+                      player.textContent = playerWins;
+                      computer.textContent = compWins;
+                      if (playerWins == 5){
+                        alert('OVER !!!!');
+                        information.textContent = 'It\'s Over Player Won !'
+                    } else if (compWins == 5) {
+                        alert('OVER !!!!');
+                        information.textContent = 'It\'s Over Machine Won !'
+                    }
+                  });

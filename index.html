@@ -5,10 +5,21 @@
         <title>
             Simple browser game
         </title>
-        <script type="text/javascript" src="../paper-rock-scissors/scripts/script.js"></script>
+        <script type="text/javascript" src="../paper-rock-scissors/scripts/script.js" defer></script>
     </head>
 
 <body>
+    <div class="scoreboard">
+        <h1>Score board</h1>
+        <p id="display">Human: <span id="player"></span> - <span id="comp"></span> :Machine</p>
+
+    </div>
+    <div class="choice-buttons">
+        <button id="paper">Paper</button>
+        <button id="rock">Rock</button>
+        <button id="scissors">Scissors</button>
+    </div>
+    <div class="info"></div>
     
 </body>
 
