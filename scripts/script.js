@@ -22,8 +22,9 @@
         function displayRoundResult(text) { //displaying result of round.
             const screen = document.querySelector('.info');
             const messege = document.createElement('p');
-                messege.textContent = text; 
-                screen.appendChild(messege);
+                messege.textContent = text;
+                messege.style.background = 'rgb(241, 152, 18)';
+                screen.insertBefore(messege, screen.firstChild);
         }
 
         function roundAlgorithm(playerSelection, compValue) { // round decision making algorithm
@@ -80,10 +81,10 @@
                     computer.textContent = compWins;
                         if (playerWins == 5){
                             alert('OVER !!!!');
-                            information.textContent = 'It\'s Over Player Won !'
+                            information.textContent = 'It\'s Over - Player Won !'
                         } else if (compWins == 5) {
                             alert('OVER !!!!');
-                            information.textContent = 'It\'s Over Player Won !'
+                            information.textContent = 'It\'s Over - Machine Won !'
                         }
                   });
                   rock.addEventListener('click', function(){
@@ -93,10 +94,10 @@
                       computer.textContent = compWins;
                       if (playerWins == 5){
                         alert('OVER !!!!');
-                        information.textContent = 'It\'s Over Player Won !'
+                        information.textContent = 'It\'s Over - Player Won !'
                     } else if (compWins == 5) {
                         alert('OVER !!!!');
-                        information.textContent = 'It\'s Over Player Won !'
+                        information.textContent = 'It\'s Over - Machine Won !'
                     }
                   });
                   scissors.addEventListener('click', function(){
@@ -106,9 +107,9 @@
                       computer.textContent = compWins;
                       if (playerWins == 5){
                         alert('OVER !!!!');
-                        information.textContent = 'It\'s Over Player Won !'
+                        information.textContent = 'It\'s Over - Player Won !'
                     } else if (compWins == 5) {
                         alert('OVER !!!!');
-                        information.textContent = 'It\'s Over Machine Won !'
+                        information.textContent = 'It\'s Over - Machine Won !'
                     }
                   });

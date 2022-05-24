@@ -1,0 +1,42 @@
+html {
+height: 100vh;
+    background-image: url(../background.png);
+    background-repeat: no-repeat;
+}
+
+.scoreboard {
+    height: 400px;
+
+}
+
+#head {
+    text-align: center;
+    font-size: 3rem;
+}
+
+#display {
+    font-size: 2.5rem;
+    margin-top: 200px;
+    text-align: center;
+}
+
+/* .resultContainer {
+
+    display:flex;
+} */
+
+#paper,
+#rock,
+#scissors {
+    height: 30px;
+    width: 130px;;
+    background-color: rgb(241, 152, 18);
+    font-size: 18px;
+}
+
+.info { 
+    width: 500px;
+    background-color: rgb(207, 139, 37);
+    height:200px;
+    overflow: hidden;
+}
